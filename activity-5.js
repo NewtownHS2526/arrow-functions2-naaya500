@@ -8,6 +8,11 @@ function createMultiplier(factor) {
     };
 }
 // Convert to arrow function (convert both outer and inner functions):
+const createMultiplier= (factor)=>{
+    return function(number) {
+        return number * factor;
+    };
+}
 
 
 // Problem 2
@@ -17,6 +22,11 @@ function processArray(arr, callback) {
     });
 }
 // Convert to arrow function (convert both outer and inner functions):
+const processArray =(arr,callback) => {
+      return arr.map(function(item) {
+        return callback(item);
+    });
+}
 
 
 // Problem 3
@@ -28,6 +38,12 @@ function createCounter() {
     };
 }
 // Convert to arrow function (convert both outer and inner functions):
+const createCounter=()=> {
+return function() {
+        count++;
+        return count;
+    };
+}
 
 
 // Problem 4
@@ -37,7 +53,11 @@ function sortByProperty(objects, property) {
     });
 }
 // Convert to arrow function (convert both outer and inner functions):
-
+const sortByProperty =(objects, property) => {
+     return objects.sort(function(a, b) {
+        return a[property] - b[property];
+    });
+}
 
 // Problem 5
 function filterAndMap(numbers) {
@@ -50,7 +70,15 @@ function filterAndMap(numbers) {
         });
 }
 // Convert to arrow function (convert all functions):
-
+const filterAndMap =(numbers) => {
+     return numbers
+        .filter(function(num) {
+            return num > 0;
+        })
+        .map(function(num) {
+            return num * 2;
+        });
+}
 
 // Problem 6
 function createValidator(min, max) {
@@ -59,6 +87,11 @@ function createValidator(min, max) {
     };
 }
 // Convert to arrow function (convert both outer and inner functions):
+const createValdidator= (min,max)=> {
+    return function(value) {
+        return value >= min && value <= max;
+    };
+}
 
 
 // Problem 7
@@ -69,7 +102,12 @@ function processData(data, transform) {
     }, []);
 }
 // Convert to arrow function (convert both outer and inner functions):
-
+const processData =(data, tranform) => {
+    return data.reduce(function(acc, item) {
+        acc.push(transform(item));
+        return acc;
+    }, []);
+}
 
 // Problem 8
 function createAdder(x) {
@@ -80,6 +118,13 @@ function createAdder(x) {
     };
 }
 // Convert to arrow function (convert all nested functions):
+const createAdder = (x)=>{
+    return function(y) {
+        return function(z) {
+            return x + y + z;
+        };
+    };
+}
 
 
 // Problem 9
@@ -94,7 +139,16 @@ function groupBy(array, keyFn) {
     }, {});
 }
 // Convert to arrow function (convert both outer and inner functions):
-
+const groupBy =(array, keyFn) => {
+     return array.reduce(function(groups, item) {
+        const key = keyFn(item);
+        if (!groups[key]) {
+            groups[key] = [];
+        }
+        groups[key].push(item);
+        return groups;
+    }, {});
+}
 
 // Problem 10
 function compose(f, g) {
@@ -103,4 +157,8 @@ function compose(f, g) {
     };
 }
 // Convert to arrow function (convert both outer and inner functions):
-
+const compose =(f,g)=>{
+     return function(x) {
+        return f(g(x));
+    }; 
+}
